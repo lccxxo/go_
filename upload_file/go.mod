@@ -1,4 +1,4 @@
-module github.com/lccxxo/go_/uploadBigFile
+module github.com/lccxxo/go_/upload_file
 
 go 1.22.2
 

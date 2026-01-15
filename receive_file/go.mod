@@ -1,4 +1,4 @@
-module github.com/lccxxo/go_/receiveBigFile
+module github.com/lccxxo/go_/receive_file
 
 go 1.22.5
 
