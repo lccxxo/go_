@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"net/http"
 	"sync"
+
+	raftkv "github.com/lccxxo/go_/raft_kv"
 )
 
 // 维护一个状态机 接受命令参数
@@ -83,4 +86,16 @@ func decodeCommand(msg []byte) command {
 	}
 
 	return c
+}
+
+type HttpServer struct {
+	raft *raftkv.Server
+	db   *sync.Map
+}
+
+func (h HttpServer) setHandler(w http.ResponseWriter, r *http.Request) {
+	var c command
+	c.kind = setCommand
+	c.key = r.URL.Query().Get("key")
+	c.value = r.URL.Query().Get("value")
 }
